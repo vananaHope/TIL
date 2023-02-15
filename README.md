@@ -9,7 +9,7 @@
 
 ## 분류
 ### HTTP
-** 김영한님의 모든 개발자를 위한 HTTP 기본 지식을 정리한 내용입니다.
+* [Section 1 인터넷 네트워크](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%201.md)
 
 
 ### 운영체제
