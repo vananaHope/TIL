@@ -15,6 +15,7 @@
 ## 웹 브라우저 요청 흐름
 1. DNS 조회 
 2. HTTP 요청 메시지 생성
-3. HTTP 요청 메시지 전송
-4. 
+![image (1)](https://user-images.githubusercontent.com/125250099/219564115-89850cfc-be2d-4f27-a014-3402f82dae55.png)
+4. HTTP 요청 메시지 전송
+5. 
 
