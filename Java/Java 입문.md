@@ -19,6 +19,12 @@
 * 숫자를 문자열로 변환시킬 수도 있는데 
   String b = Integer.tostring(1); / 이 과정을 통해 1은 숫자이지만 문자열로 출력된다.
 
-
+### 입력과 출력
+* 값을 입력하는 팝업창 띄우기
+  * String 변수명 = JOptionPane.showInputDialog("Enter"); / import를 통해 미리 java.swing.JOptionPane 불러오기
+* String 값을 double로 컨버팅하는 방법
+  * Double.parsedouble();
+* Arguments에 큰 따옴표로 구분하여 값을 입력하여 args라는 parameter를 통해 받기
+  * Arguments에 값이 여러개인 경우에는 args[0],args[1] 등을 통해 순서대로 값을 받기 ( 컴퓨터는 0부터 인식 )
 
 
