@@ -15,7 +15,11 @@
 ## 웹 브라우저 요청 흐름
 1. DNS 조회 
 2. HTTP 요청 메시지 생성
-![image (1)](https://user-images.githubusercontent.com/125250099/219564115-89850cfc-be2d-4f27-a014-3402f82dae55.png)
-4. HTTP 요청 메시지 전송
-5. 
-
+<img src = "https://user-images.githubusercontent.com/125250099/219564115-89850cfc-be2d-4f27-a014-3402f82dae55.png" width="80%">
+3. HTTP 요청 메시지 전송
+<img src = "https://user-images.githubusercontent.com/125250099/219565179-c8cfbdb4-fb24-429b-9ebf-7eba02df4279.png" width="80%">
+4. HTTP 메세지가 포함된 TCP/IP 패킷을 생성
+<img src = "https://user-images.githubusercontent.com/125250099/219565517-01d8bf58-5430-40c9-8131-1433e6d71e5d.png" width="80%">
+5. 서버는 도착한 메세지를 해석해서 응답 메세지를 생성
+<img src = "https://user-images.githubusercontent.com/125250099/219565904-a4383c77-bce2-4dac-8d4a-69e92e5cb91d.png" width="80%">
+6. 클라이언트는 응답 메세지를 통해 HTML 렌더링을 진행
