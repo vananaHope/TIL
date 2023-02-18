@@ -11,7 +11,7 @@
 ### HTTP
 * [Section 1 인터넷 네트워크](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%201.md)
 * [Section 2 URI와 웹 브라우저 요청 흐름](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%202.md)
-
+* [Section 3 HTTP 기본](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%203.md)
 
 ### 운영체제
 
