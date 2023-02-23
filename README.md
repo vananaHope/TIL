@@ -13,6 +13,8 @@
 * [Section 2 URI와 웹 브라우저 요청 흐름](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%202.md)
 * [Section 3 HTTP 기본](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%203.md)
 * [Section 4 HTTP 메서드](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%204.md)
+* [Section 5 HTTP 메서드 활용](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%205.md)
+
 
 ### 운영체제
 
