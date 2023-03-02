@@ -132,7 +132,7 @@ Accept: text/*, text/plain, text/plain;format=flowed, */*
 ### 협상과 우선순위 (3)
 * 구체적인 것을 기준으로 미디어 타입을 맞춘다.
 * Accept: text/*;q=0.3, text/html;q=0.7, text/html;level=1,text/html;level2;q=0.4, */*;q=0.5
-<img src="https://user-images.githubusercontent.com/125250099/222352846-ac8c2d44-ae64-4312-84f5-5b1327bde50c.png" width="50%">
+<img src="https://user-images.githubusercontent.com/125250099/222352846-ac8c2d44-ae64-4312-84f5-5b1327bde50c.png" width="30%">
 
 * text/plain은 매칭되는 것은 없지만 text/*과는 매칭되기에 0.3으로 생각하면 된다. 
 
@@ -202,3 +202,148 @@ Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)
 * 응답(Response)에서 사용한다.
 
 ## 특별한 정보
+### Host
+* 요청한 호스트 정보 ( 도메인 )
+* 필수 헤더
+* 하나의 서버가 여러 도메인을 처리할 때 사용
+* 하나의 IP주소에 여러 도메인이 적용되어 있을 때
+
+### Host가 없을 때 생기는 문제
+<img src="https://user-images.githubusercontent.com/125250099/222372972-1ca6c836-dee8-42b7-9675-b7732c8135db.png" width=30%:>
+
+* 가상 호스트를 사용해서 여러 도메인을 한 번에 처리하는 서버가 있어서 애플리케이션을 여러 개 구동할 수 있다.
+
+<img src="https://user-images.githubusercontent.com/125250099/222373379-9cc84cac-a602-4cf5-832b-e668627ae964.png" width="70%">
+
+* 호스트를 사용하지 않는 경우 클라이언트의 요청을 가상 호스트를 사용하는 서버 내 어떤 도메인으로 보내야 할 지 알 수가 없다.
+
+### Host 추가를 통해 문제 해결
+<img src="https://user-images.githubusercontent.com/125250099/222373872-203d89fa-a3de-45fc-8836-52937d37b5e4.png" width="70%">
+
+* 헤더에 호스트 정보를 넣음으로써 어떤 도메인으로 가야 할 지를 알 수 있다.
+
+### Location
+* 페이지 리다이렉션
+* 3xx 응답 결과를 받은 경우 응답 결과 안에 있는 Location 헤더를 통해 자동 리다이렉션을 진행한다.
+* 201(Created): Location 값은 요청에 의해 생성된 리소스 URI이다
+* 3xx(Redirection): Location값은 요청을 자동으로 리디렉션 하기 위한 대상 리소스를 가리킨다.
+
+### Allow 
+* 허용 가능한 HTTP 메서드
+* 일반적으로 사용되지 않음
+* 405 ( Method Not Allowed ) 응답을 통해 클라이언트에게 허용되는 메서드에 대해 알려주어야 한다.
+
+### Retry-After 
+* 유저 에이전트가 다음 요청까지 기다려야 하는 시간
+* 503 ( Service Unavailable ) : 서비스가 언제까지 이용 불가능한지 알려줄 수 있다
+* Retry-After: Fri, 31 Dec 1999 23:59:59 GMT(날짜 표기)
+* Retry-After: 120(초단위 표기)
+
+## 인증
+### Authorization
+* 클라이언트 인증 정보를 서버에 전달
+* Authorization: BASIC xxxxxxxxxxxxxxxxxx
+  * 인증 방식은 OAuth, OAuth2, SNS로그인 등 다양한데, 그런 방식별로 들어가야하는 값이 다르다. 
+  * 인증 메커니즘과는 상관없이 헤더를 제공하는 것으로 인증과 관련된 값을 넣어주면 된다.
+* WWW-Authenticate
+  * 리소스 접근 시 필요한 인증 방법을 정의
+  * 401 Unauthorized 응답과 함께 사용
+  * WWW-Authenticate: Newauth realm="apps", type=1,title="Login to \"apps\"", Basic realm="simple"    
+    ⇒ 위와같은 방식으로 어떻게 인증을 해야할지를 정의해 알려준다.
+    
+## 쿠키
+* Set-Cookie : 서버에서 클라이언트로 쿠키 전달
+* Cookie : 클라이언트가 서버에게 받은 쿠키를 저장, HTTP 요청시 서버에 전송
+
+### 주 사용 목적
+* 세션 관리(Session Management)    
+⇒ 서버에 저장해야 할 로그인, 장바구니, 게임 스코어등의 정보 관리
+* 개인화(Personalization)    
+⇒ 사용자 선호, 테마 등의 세팅
+* 트래킹(Tracking)    
+⇒ 사용자 행동을 기록하고 분석하는 용도
+
+### 쿠키를 사용하지 않았을 때
+<img src="https://user-images.githubusercontent.com/125250099/222381477-2f30f019-ae5f-4fe6-8d8c-77973b654b42.png" width="70%">
+
+* 클라이언트에서 POST로 로그인
+* 로그인 후 다시 Welcome 페이지로 이동
+* 하지만 로그인 한 사용자명이 표시되지 않음
+
+<img src="https://user-images.githubusercontent.com/125250099/222382451-a69ffecf-012a-431d-8edb-2d5336bf7835.png" width="70%">
+
+* HTTP는 무상태 프로토콜이기 때문에 다운로드가 끝나면 연결을 끊어버림
+* 따라서 로그인 이후에 Welcome 페이지 요청을 보내도 서버는 로그인 한 유저의 요청인지 알 수가 없음    
+  ---> **쿠키를 사용함으로써 이 문제를 해결할 수 있음**
+  
+### 쿠키 사용
+<img src="https://user-images.githubusercontent.com/125250099/222383224-d07531e4-cbaa-4803-b570-fe67e2a3fd24.png" width="70%">
+
+* 클라이언트에서 로그인을 요청하며 데이터를 보내면 서버에서는 Set-Cookie로 로그인 정보를 담아 응답한다. 
+* 웹브라우저는 내장된 쿠키 저장소에 Set-Cookie에 있는 정보를 저장한다. 
+* 그래서 로그인 이후 welcome 페이지에 접근하면 쿠키를 조회해서 쿠키값을 Cookie에 담아서 보낸다.
+
+<img src="https://user-images.githubusercontent.com/125250099/222383482-8700eb5c-56d7-46a6-9542-4a393d7b04f4.png" width="70%">
+
+### 쿠키 사용처 및 주의사항
+```
+set-cookie: sessionId=abcde1234; expires=Sat, 26-Dec-2020 00:00:00 GMT; path=/; domain=.google.com; Secure
+```
+* 사용처
+  * 로그인 세션 관리
+  * 광고 트래킹
+
+* 쿠키는 항상 서버에 전송된다.
+  * 추가적인 네트워크 트래픽을 유발
+  * 따라서 최소한의 정보만 담아야 한다. (세션id, 인증 토큰)
+  * 서버에 전송하지 않고, 웹 브라우저 내부에 데이터를 저장하고 싶으면 웹 스토리지 이용
+
+* 주의사항
+  * 보안과 관련된 민감한 정보는 포함되면 안된다. ( 주민번호, 신용카드번호 등 )
+
+### 쿠키의 생명주기
+* Set-Cookie: expires=Sat, 26-Dec-2020 04:39:21 GMT    
+⇒ 만료일이 되면 쿠키는 삭제된다.
+* Set-Cookie: max-age=3600(3600초)    
+⇒ 0이나 음수로 지정할 경우 쿠키는 삭제된다
+* 세션 쿠키: 만료 날짜를 생략하면 브라우저 종료시까지만 유지
+* 영속 쿠키: 만료 날짜를 입력하면 해당 날짜까지 유지
+
+### 쿠키 도메인 지정
+```
+domain=example.org
+```
+* 명시 : 명시한 문서 기준의 도메인 + 서브 도메인 포함
+  * domain=example.org를 지정해서 쿠키 생성
+    * example.org는 물론이고
+    * dev.example.org도 쿠키 접근
+
+* 생략 : 현재 문서 기준 도메인만 적용
+  * example.org에서 쿠키를 지정하고 도메인 지정 생략
+    * example.org는 접근 가능
+    * dev.example.org는 접근 불가능
+
+### 쿠키 경로
+* 작성한 경로를 포함한 하위 경로 페이지에서만 쿠키 접근이 가능하다. 
+* 일반적으로 path=/ 루트로 지정한다
+* 해당 도메인의 하위 경로 모두 쿠키를 사용하기를 바라기 때문    
+예)    
+⇒ path=/home 지정    
+⇒ /home/level1 접근 가능     
+⇒ /home/level1/level2 접근 가능    
+⇒ /hello 불가능     
+
+### 쿠키 보안
+* Secure
+  * 쿠키는 http, https 가리지 않고 전송한다.
+  * Secure을 넣을 경우 https에만 쿠키를 전송한다.
+
+* HttpOnly
+  * XSS공격방지
+  * 자바스크립트에서 접근 불가능
+  * HTTP 전송에만 사용됨
+
+* SameSite
+  * XSRF공격방지
+  * 요청 도메인과 쿠키의 도메인이 일치할 때만 쿠키를 전송함
+
