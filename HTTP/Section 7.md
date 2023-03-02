@@ -39,7 +39,8 @@ Representation = representation Metadata + Representation Data
 ## 표현
 <img src ="https://user-images.githubusercontent.com/125250099/222344945-be04dc74-c735-4161-bcea-ad1871786f9e.png" width="50%">
 
-* 클라이언트와 서버 간의 송/수신을 진행할 때 리소스를 무엇으로 표현할 지 알려주고 표현한다. ( html 혹은 json으로 이 리소스를 표현할거야 )
+* 클라이언트와 서버 간의 송/수신을 진행할 때 리소스를 무엇으로 표현할 지 알려주고 표현한다.     
+  ( html 혹은 json으로 이 리소스를 표현할거야 )
 * Content-Type : 표현 데이터의 형식
 * Content-Encoding : 표현 데이터의 압축 방식
 * Content-Language : 표현 데이터의 자연 언어 
