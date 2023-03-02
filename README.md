@@ -15,6 +15,7 @@
 * [Section 4 HTTP 메서드](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%204.md)
 * [Section 5 HTTP 메서드 활용](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%205.md)
 * [Section 6 HTTP 상태코드](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%206.md)
+* [Section 7 HTTP 헤더1 - 일반 헤더](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%207.md)
 
 ### 운영체제
 
