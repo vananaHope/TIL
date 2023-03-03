@@ -30,6 +30,7 @@
 * [Java 입문](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%9E%85%EB%AC%B8.md)
 * [Java 제어문](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%A0%9C%EC%96%B4%EB%AC%B8.md)
 * [Java Method](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Method.md)
+* [Java 객체지향](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
 
 ### Spring
 
