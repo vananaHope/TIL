@@ -84,8 +84,8 @@ System.out.println(classGroup.length); // 4
 ```
 String[] classGroup = { "진혁", "유빈", "철수", "이고잉" };
 
-For( int i = 0; i < users.length; i++ ) {
-    System.out.println( users[i] + "," )
+For( int i = 0; i < classGroup.length; i++ ) {
+    System.out.println( classGroup[i] + "," )
 }
 ```
 ```
