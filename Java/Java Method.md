@@ -2,8 +2,8 @@
 ## 메서드 기본
 * 메서드는 **자바에서 사용하는 함수**이다.
 * 메서드는 서로 연관된 코드를 모아놓은 정리정돈 상자이다.
-* System.output.println은 입력값을 출력해주는 메서드
-* Math.floor()는 입력값을 내림함 값으로 변환해주는 메서드
+* System.output.println에서 println은 메서드
+* Math.floor()는 입력값을 내림함 값으로 변환해주는 Math라는 클래스의 floor 메서드
 * public static void main{} 역시 main이라는 이름을 가진 메서드이며 프로그램을 실행할 때 main을 찾아 실행하도록 약속이 되어있다.
 
 ## 메서드 기본 형식
