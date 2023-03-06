@@ -131,8 +131,83 @@
 * 클라이언트는 캐시 로직을 알 필요가 없다.
 
 ## 캐시와 조건부 요청 헤더
-### 캐시 제어 헤더 
+### Cache-Control 
 * 캐시 지시어
   * Cache-control:max-age ( 캐시 유효 시간을 초 단위로 지정)
   * Cache-control:no-cache ( 데이터는 캐시로 저장해도 되지만 무조건 사용할 때 원(Origin)서버에 검증하고 사용 )
   * Cache-control:no-store ( 민감한 정보이기 때문에 데이터에 저장하면 안된다. / 메모리에서 사용하고 빨리 삭제해야 한다. )
+
+### Pragma
+* 캐시 제어 ( 하위 호환 )
+* Pragma:no-cache
+* HTTP 1.0 하위 호환
+* 지금은 거의 사용되지 않는다.
+
+### Expires
+* 캐시 만료일 지정 ( 하위 호환 )
+* expires: Mon, 01 Jan 1990 00:00:00 GMT
+* 캐시 만료일을 정확한 날짜로 지정
+* HTTP 1.0부터 사용
+* 지금은 더 유연한 max-age를 권장한다. 
+* max-age와 동시에 사용되면 Expires는 무시된다. 
+
+## 프록시 캐시
+### Origin 서버
+<img src="https://user-images.githubusercontent.com/125250099/223045864-0d16e9e2-1129-41da-9207-b3b8646decc6.png" width="70%">
+
+* 한국 클라이언트에서 이미지가 필요한상황인데 해당 이미지의 원서버가 미국에 있는 경우 
+* 이미지를 가져오는데 0.5초가량 걸린다고하면 여러 클라이언트는 모두 0.5초 가량을 기다려야 해당 이미지를 받을 수 있다. 
+* 실제로는 더 많은 시간이 걸릴 수 있다. 그래서 이를 해결하기 위해 **프록시 캐시**가 도입되었다.
+
+### 프록시 캐시 - 첫 번째 요청
+<img src="https://user-images.githubusercontent.com/125250099/223045888-aedc69c3-0cf0-45d3-bf14-c6084c597175.png" width="70%">
+
+* 한국에 프록시 캐시 서버를 두고 한국 클라이언트는 프록시 캐시 서버를 통해 자료를 받도록 한다.
+* 여러 사람이 찾는 자료일 수록 이미 프록시 캐시 서버에 저장되어있기 때문에 빠르게 받을 수 있다.    
+  ⇒ 같은 국내에 있기에 원서버에 접근하는것보다 훨씬 빠른 속도에 자료를 가져올 수 있다.
+* 클라이언트에서 사용되고 저장되는 캐시를 **private 캐시**라 하고 프록시 캐시 서버에 저장되는 캐시를 **public 캐시**라 한다  
+  
+### Cache-Control
+* 캐시 지시어 - 기타
+  * Cache-Control:public ( 응답을 public 캐시에 저장 가능 )
+  * Cache-Control:private ( 응답을 private 캐시에만 저장 / 기본값 )
+  * Cache-Control:s-maxage ( 프록시 캐시 서버에 머무는 유효 시간 설정 )
+  * Age:60 ( 오리진 서버에서 보낸 응답이 프록시 캐시 서버에 머무 시간 )
+
+## 캐시 무효화
+```
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+```
+* 캐시를 확실하게 무효화시키려면 위의 코드를 쓰면 된다.
+
+### 캐시 지시어 - 무효화
+* Cache-control:no-cache
+* Cache-control:no-store
+* Cache-control:must-revalidate    
+⇒ 캐시 만료후 최초 조회시 원 서버에 검증해야한다.    
+⇒ 원 서버 접근 실패시 반드시 오류가 발생해야 한다. - 504(Gateway Timeout)     
+⇒ must-revalidate 는 캐시 유효시간이라면 캐시를 사용한다.     
+* Pragma:no-cache    
+⇒ HTTP 1.0 하위 호환
+
+### 캐시 지시어 No Cache 와 Must-Revalidate를 같이 써야하는 이유는?
+* **no-cache**
+<img src="https://user-images.githubusercontent.com/125250099/223065870-b3c00203-efe7-451f-9c18-c5ee2b13c5e5.png" width="70%">
+
+* 캐시 서버 요청을 하여 프록시 캐시 서버에 도착하면 no-cache인 경우 원 서버에 요청을 하게된다. 그리고 원 서버에서 검증 후 응답을 하게 된다.
+* 어떤 이유로 인해 프록시 캐시 서버와 원 서버간 네트워크 연결이 단절되어 접근이 불가능 하면,      
+  no-cache에서는 응답으로 오류가 아닌 오래된 데이터라도 보여주자라는 개념으로 200OK으로 응답을 한다. 
+<img src="https://user-images.githubusercontent.com/125250099/223065883-9da39fc1-a92a-493d-9735-9576100090c0.png" width="30%">
+
+* **must-revalidate**
+<img src="https://user-images.githubusercontent.com/125250099/223065890-1a1150c7-994f-4cbb-a283-99700d05b7d9.png" width="70%">
+
+* 캐시 서버 요청이 프록시 캐시 서버로 갔을때 캐시 서버와 원 서버간의 연결이 단절되어 접근이 불가능하면     
+  must-revalidate에서는 오류가 발생한다.(504 Gateway Timeout)
+* 이를 통해 통장 잔고와 같이 오래된 정보나 민감한 정보를 보여주면 안되는 경우들이 발생하지 않도록 막을 수 있다.  
+  
+### 정리
+* no-cache로 무조건 원 서버에서 검증을 하게하고 must-revalidate로 원 서버와 검증이 안되면 오류가 발생하도록 한다.     
+  그리고 Pragma를 사용해서 혹시모를 1.0 이하 버전의 하위호환도 적용해준다. 
+
