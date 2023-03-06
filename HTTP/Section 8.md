@@ -72,4 +72,67 @@
 * 매우 실용적인 해결책
 
 ## 검증 헤더와 조건부 요청 2
+* 검증헤더란 캐시데이터와 서버 데이터가 같은지 검증하는 데이터로 Last-Modified, ETag가 있다.
+* If-Modified-Since: Last-Modified 사용
+* If-None-Matach: ETag 사용
+* 조건이 만족하면 200 OK
+* 조건이 만족하지 않으면 304 Not Modified
 
+### If-Modified-Since 이후에 데이터가 수정이 되었다면?
+* 데이터 미변경인 경우
+  * 캐시 2020년 11월 10일 10:00:00 vs 서버: 2020년 11월 10일 10:00:00
+  * 304 Not Modified, 헤더 데이터만 전송(Body 없음)
+  * 전송 용량 0.1M(헤더 0.1M, 바디 1.0M)
+* 데이터가 변경된 경우
+  * 캐시: 2020년 11월 10일 10:00:00 vs 서버: 2020년 11월 10일 11:00:00
+  * 200 OK, 모든 데이터 전송(Body 포함)
+  * 전송 용량 1.1(헤더 0.1M, 바디 1.0M)
+
+### Last-Modified, If-Modified-Since 의 단점
+* 1초 미만(0.x초)단위로 캐시 조정이 불가능하다.
+* 날짜 기반의 로직을 사용한다.
+* 데이터를 수정해 날짜가 다르지만, 같은 데이터를 수정해 데이터 결과가 똑같은 경우
+  * test.txt 파일의 내용을 A→B로 수정했지만, 다시 B→ A로 수정한 경우
+* 서버에서 별도의 캐시 로직을 관리하고 싶은 경우
+  * 스페이스나 주석처럼 크게 영향이 없는 변경에서 캐시를 유지하고 싶은 경우 
+
+### ETag, If-None-Match
+* 서버에서 캐시를 컨트롤하고 싶은 경우 ETag 를 사용
+* ETag ( Entity Tag )
+  * 캐시용 데이터에 임의의 고유 이름을 붙인다.
+    * ETag: "v1.0", ETag: "a2jiodwjekjl3"
+  * 데이터가 변경되면 이름을 바꿔서 저장한다.
+    * ETag:"aaaa" → ETag:"bbbb"
+  * ETag를 전송해서 같으면 유지하고 다르면 서버로부터 다시 받는다.
+
+### ETag 활용 - 첫 번째 요청
+<img src="https://user-images.githubusercontent.com/125250099/223040993-41a3012d-ac00-4603-8b28-17c4dd561230.png" width="70%">
+
+* 헤더에 ETag를 포함해서 응답
+* 브라우저 캐시에 ETag를 저장
+<img src="https://user-images.githubusercontent.com/125250099/223041000-9b4bee74-f445-49d9-81d8-648e312c7c95.png" width="30%">
+
+### ETag 활용 - 두 번째 요청 ( 캐시 시간 초과 )
+<img src="https://user-images.githubusercontent.com/125250099/223041006-9ed88a51-d6fc-4630-b592-a4e7c6ca9bdf.png" width="70%">
+
+* 캐시 유효 시간이 지나서 다시 보낼 때 if-none-match 헤더를 추가해서 서버에 보낸다.
+
+<img src="https://user-images.githubusercontent.com/125250099/223041008-2c21f219-ab3b-43ce-95cb-ae6b34a0dd7a.png" width="70%">
+
+* 서버에서 데이터가 변경되지 않았을 경우 ETag는 동일하다. 따라서 If-None-Match는 실패이다.
+* 이 경우 서버에서는 304 Not Modified를 응답하며 이때 HTTP Body는 포함하지 않는다. 
+* 브라우저 캐시에서는 응답 결과를 재사용하고 헤더 데이터를 갱신한다.
+
+<img src="https://user-images.githubusercontent.com/125250099/223041055-686af903-089c-4a38-929f-796061ce28c9.png" width="30%">
+
+### 정리
+* ETag가 동일하면 유지하고 다르면 새로 서버로부터 받는다.
+* 캐시 제어 로직을 서버에서 관리한다.
+* 클라이언트는 캐시 로직을 알 필요가 없다.
+
+## 캐시와 조건부 요청 헤더
+### 캐시 제어 헤더 
+* 캐시 지시어
+  * Cache-control:max-age ( 캐시 유효 시간을 초 단위로 지정)
+  * Cache-control:no-cache ( 데이터는 캐시로 저장해도 되지만 무조건 사용할 때 원(Origin)서버에 검증하고 사용 )
+  * Cache-control:no-store ( 민감한 정보이기 때문에 데이터에 저장하면 안된다. / 메모리에서 사용하고 빨리 삭제해야 한다. )
