@@ -249,3 +249,200 @@ class Print {
 
 }
 ```
+## Static
+* static이 붙은 메서드는 **클래스의 메서드**
+* static이 붙지 않은 메서드는 **인스턴스의 메서드**
+* 공유 폴더를 생각하면 훨씬 이해하기 쉽다.
+	* Static : 공유 폴더의 내용물, 안의 내용물을 보고 사용할 수 있지만 해당 내용을 수정하면 해당 폴더를 공유하는 모든 사용자에게도 수정된 결과물이 보여짐
+	* Static X ( Instance ) : 공유 폴더 내용물을 내 컴퓨터로 복사한 것, 따라서 수정해도 나만 볼 수 있고 나에게만 영향을 미침
+
+<img src="https://user-images.githubusercontent.com/125250099/223329503-be6349ff-a499-4f01-8746-93d55cd456f6.png" width="50%">
+
+```
+class Foo{
+    public static String classVar = "I class var";
+    public String instanceVar = "I instance var";
+    public static void classMethod() {
+        System.out.println(classVar); // Ok
+//      System.out.println(instanceVar); // Error
+    }
+    public void instanceMethod() {
+        System.out.println(classVar); // Ok
+        System.out.println(instanceVar); // Ok
+    }
+}
+public class StaticApp {
+ 
+    public static void main(String[] args) {
+        System.out.println(Foo.classVar); // OK
+//      System.out.println(Foo.instanceVar); // Error
+        Foo.classMethod();
+//      Foo.instanceMethod();
+         
+        Foo f1 = new Foo();
+        Foo f2 = new Foo();
+//      
+        System.out.println(f1.classVar); // I class var
+        System.out.println(f1.instanceVar); // I instance var
+//      
+        f1.classVar = "changed by f1";
+        System.out.println(Foo.classVar); // changed by f1
+        System.out.println(f2.classVar);  // changed by f1
+//      
+        f1.instanceVar = "changed by f1";
+        System.out.println(f1.instanceVar); // changed by f1
+        System.out.println(f2.instanceVar); // I instance var
+    }
+ 
+}
+```
+## 생성자와 this
+### 생성자
+* 자바는 인스턴스를 생성할 때 클래스명과 같은 이름의 메소드가 있다면 그 메소드를 호출한다.
+	그리고 그 메소드를 **생성자(Constructor)** 라고 부른다.
+* 생성자는 리턴 데이터 타입을 따로 지정하지 않아도 된다.
+* 인스턴스를 생성하는 동시에 값을 입력하면 필수적인 과정을 빼먹지 않을 수 있고 이를 위해 생성자를 이용한다.
+
+```
+public class Practice {
+
+	public static void main(String[] args) {
+		
+		Print2 pp = new Print2("----");
+		
+		pp.A();
+		pp.B();
+		
+		
+		Print2 pp2 = new Print2("####");
+		
+		pp2.A();
+		pp2.B();
+
+	}
+
+}
+```
+```
+class Print2 {
+	public String delimiter = "";
+	public Print2(String _delimiter --> Practice.java 인스턴스 생성할 때 입력한 매개변수가 들어옴) {
+		delimiter = _delimiter; // 뒤에 배우는 THIS를 이용하면 _를 붙일 필요 없어짐
+	}
+	public void A() {
+		System.out.println(delimiter);
+		System.out.println("a");
+		System.out.println("a");
+	}
+	public void B() {
+		System.out.println(delimiter);
+		System.out.println("b");
+		System.out.println("b");
+	}
+	
+}
+```
+### This
+* this는 인스턴스의 이름을 가르키며 this.delimiter는 인스턴스의 변수을 의미한다.
+```
+class Print2 {
+	public String delimiter = ""; ---> this.delimiter가 가르키는 것
+	public Print2(String delimiter ---> Practice.java 인스턴스 생성할 때 입력한 매개변수가 들어옴, 밑에 delimiter가 가르키는 것) {
+		this.delimiter = delimiter;
+	}
+	public void A() {
+		System.out.println(delimiter);
+		System.out.println("a");
+		System.out.println("a");
+	}
+	public void B() {
+		System.out.println(delimiter);
+		System.out.println("b");
+		System.out.println("b");
+	}
+	
+}
+```
+## 클래스와 인스턴스의 활용
+### 클래스 활용
+```
+public class AccountingApp {
+	// 공급가액
+	public static double valueOfSupply;
+	// 부가가치세율
+	public static double vatRate = 0.1;
+	
+	public static double getVAT() {
+		return valueOfSupply * vatRate;
+	}
+	
+	public static double getTotal() {
+		return valueOfSupply + getVAT();
+	}
+	
+	public static void main(String[] args) {
+		valueOfSupply = 10000.0;
+		System.out.println("Value of supply : " + valueOfSupply);
+		System.out.println("VAT : " + getVAT());
+		System.out.println("Total : " + getTotal());
+
+	}
+
+}
+```
+↓ 위의 예제 코드에서 관련 있는 메서드를 클래스로 모으면 훨씬 코드가 깔끔해진다.
+```
+class Accounting{
+    public static double valueOfSupply;
+    public static double vatRate = 0.1;
+    public static double getVAT() {
+        return valueOfSupply * vatRate;
+    }
+    public static double getTotal() {
+        return valueOfSupply + getVAT();
+    }
+}
+public class AccountingApp {
+    public static void main(String[] args) {
+        Accounting.valueOfSupply = 10000.0;
+        System.out.println("Value of supply : " + Accounting.valueOfSupply);
+        System.out.println("VAT : " + Accounting.getVAT());
+        System.out.println("Total : " + Accounting.getTotal());
+  
+    }
+}
+```
+### 인스턴스 활용
+* 10000원일 때의 공급가액을 출력하고, 20000원일 때의 공급가액을 출력한 뒤에
+  다시 10000원일 때의 부가가치세를 출력하고, 20000원일 때의 부가가치세를 출력하는 복잡한 상황을 생각해보자
+* 위 클래스 활용 예제로는 한계가 있고 매번 새롭게 변수를 정의해야 한다.
+* 이럴 때 인스턴스를 사용하여 인스턴스마다 고유의 상태를 지정해주면 훨씬 간결하고 효율적인 코드를 짤 수 있다.
+
+```
+class Accounting{
+    public double valueOfSupply;
+    public static double vatRate = 0.1;
+    // 클래스와 인스턴스에 모두 적용되는 값이라면 static을 그대로 두는 것이 좋다, 왜냐하면 static이 붙은 값을 변경하면 클래스,인스턴스 상관없이 값이 모두 변경되기 때문
+    public Accounting(double valueOfSupply) {
+        this.valueOfSupply = valueOfSupply;
+    }
+    public double getVAT() {
+        return valueOfSupply * vatRate;
+    }
+    public double getTotal() {
+        return valueOfSupply + getVAT();
+    }
+}
+public class AccountingApp {
+    public static void main(String[] args) {
+        Accounting a1 = new Accounting(10000.0);
+        
+        System.out.println("Value of supply : " + a1.valueOfSupply);
+        System.out.println("VAT : " + a1.getVAT());
+        System.out.println("Total : " + a1.getTotal());
+  
+    }
+}
+```
+
+
