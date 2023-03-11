@@ -33,6 +33,7 @@
 * [Java Method](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Method.md)
 * [Java 객체지향](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5.md)
 * [Java 상속](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%83%81%EC%86%8D.md)
+* [Java Interface](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Interface.md)
 
 ### Spring
 
