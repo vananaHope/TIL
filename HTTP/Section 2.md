@@ -1,6 +1,13 @@
 # Section 2 URI와 웹 브라우저 요청 흐름
 * 김영한님의 모든 개발자를 위한 HTTP 지식 강의를 정리한 내용입니다.
 
+## URI 
+* Uniform:리소스를 식별하는 통일된 방식
+* Resource: 자원, URI로 식별할 수 있는 모든 것(제한이 없다.)
+* Identifier: 다른 항목과 구분하는데 필요한 정보
+
+<img src="https://user-images.githubusercontent.com/125250099/224609701-516b9982-13e1-43c1-9107-aa72e4eb598c.png" width="60%">
+
 ## URL ( Uniform Resource Locator )
 * 리소스의 위치를 지정
 * scheme://[userinfo@]host[:port][/path][?query][#fragment]
