@@ -67,7 +67,7 @@
 * 따라서 검색 엔진 등에서 URL을 변경하면 안됨
 * **302 Found** : 리다이렉트시 메서드가 GET으로 변경되고, 본문이 변경될 수 있음(MAY)
 * **307 Temporary Redirect** : 리다이렉트시 메서드가 변경되지 않고 유지됨(MUST NOT)
-* **308 See Other** : 리다이렉트시 메서드가 GET으로 변경됨
+* **303 See Other** : 리다이렉트시 메서드가 GET으로 변경됨
 
 ### PRG ( POST/REDIRECT/GET )
 * 일시적인 리다이렉션
