@@ -130,8 +130,10 @@ public class Z01_JavaPro {
 		
 		// 8
 		
-		
-		
+		char code1 = "C";
+char code2 = {"J","A","V","A"};
+		System.out.println(code1);
+System.out.println(code2);
 		
 		 
 		
