@@ -18,15 +18,6 @@
 * [Section 7 HTTP 헤더1 - 일반 헤더](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%207.md)
 * [Section 8 HTTP 헤더2 - 캐시와 조건부 요청](https://github.com/vananaHope/TIL/blob/main/HTTP/Section%208.md)
 
-### 운영체제
-
-
-### HTML & CSS
-
-
-### Javascript
-
-
 ### 생활코딩 Java
 * [Java 입문](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%9E%85%EB%AC%B8.md)
 * [Java 제어문](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%A0%9C%EC%96%B4%EB%AC%B8.md)
@@ -35,10 +26,13 @@
 * [Java 상속](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%83%81%EC%86%8D.md)
 * [Java Interface](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Interface.md)
 
+### Git
+
+
 ### Spring
 
 
 ### Spring Boot
 
 
-### DB
+
