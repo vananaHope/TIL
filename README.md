@@ -26,7 +26,7 @@
 * [Java 상속](https://github.com/vananaHope/TIL/blob/main/Java/Java%20%EC%83%81%EC%86%8D.md)
 * [Java Interface](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Interface.md)
 
-### Git
+### 생활코딩 Git
 
 
 ### Spring
