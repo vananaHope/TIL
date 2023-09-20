@@ -42,3 +42,5 @@
 * [Spring 기초](https://github.com/vananaHope/TIL/tree/main/Spring/Spring%20%EC%9E%85%EB%AC%B8)
 * [테스트 케이스 작성](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%BC%80%EC%9D%B4%EC%8A%A4%20%EC%9E%91%EC%84%B1.md)
 * [스프링 빈과 의존관계](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B9%88%EA%B3%BC%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84.md)
+* [스프링 DB 접근 기술](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%EC%8A%A4%ED%94%84%EB%A7%81%20DB%20%EC%A0%91%EA%B7%BC%20%EA%B8%B0%EC%88%A0.md)
+* [AOP 맛보기](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/AOP%20%EB%A7%9B%EB%B3%B4%EA%B8%B0.md)
