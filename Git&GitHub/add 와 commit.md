@@ -61,4 +61,10 @@ git commit -m "FIRST COMMIT"
 ```
 git commit -am "SECOND COMMIT"
 ```
+### 변경사항 확인하고 커밋하기
+```
+git commit -v
+```
+* j, k로 스크롤하며 내용 확인
+* git diff --staged와 비교
 
