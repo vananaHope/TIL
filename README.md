@@ -27,6 +27,8 @@
 * [Java Interface](https://github.com/vananaHope/TIL/blob/main/Java/Java%20Interface.md)
 
 ### Git&GitHub
+얄팍한 코딩 GIT&GITHUB 강의를 정리한 내용입니다.
+
 * [Git 설치와 세팅](https://github.com/vananaHope/TIL/blob/main/Git%26GitHub/Git%20%EC%84%A4%EC%B9%98%EC%99%80%20%EC%84%B8%ED%8C%85.md)
 * [Add&Commit](https://github.com/vananaHope/TIL/blob/main/Git%26GitHub/add%20%EC%99%80%20commit.md)
 * [Reset&Revert](https://github.com/vananaHope/TIL/blob/main/Git%26GitHub/Reset%26Revert.md)
