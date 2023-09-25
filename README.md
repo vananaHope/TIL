@@ -37,7 +37,7 @@
 * [GitHub 시작](https://github.com/vananaHope/TIL/blob/main/Git%26GitHub/GitHub%20%EC%8B%9C%EC%9E%91.md)
 
 ### Spring
-* 김영한님의 강의를 정리한 내용입니다.
+김영한님의 강의를 정리한 내용입니다.
 
 **Spring 입문**
 * [Spring Boot 설정](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/Spring%20Boot%20%EC%84%A4%EC%A0%95.md)
