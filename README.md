@@ -1,5 +1,5 @@
 # Today I Learned
-[![Version](https://img.shields.io/badge/version-2023.2.15-red.svg)](./CHANGELOG)
+[![Version](https://img.shields.io/badge/version-2023.2.15-green.svg)](./CHANGELOG)
 * 내가 오늘 배운 것들을 저장하는 장소
 * 날짜를 따로 적지 않는 이유는 조급해지지 않고 꾸준하게 하기 위해서
 * [Han Jeongsu](https://github.com/Integerous)님, [Kim Namjune](https://github.com/namjunemy/TIL)님으로부터 많은 영감을 얻었다.
