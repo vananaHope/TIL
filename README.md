@@ -53,13 +53,16 @@
 ### Spring
 김영한님의 강의를 정리한 내용입니다.
 
-**Spring 입문**
+#### Spring 입문
 * [Spring Boot 설정](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/Spring%20Boot%20%EC%84%A4%EC%A0%95.md)
 * [Spring 기초](https://github.com/vananaHope/TIL/tree/main/Spring/Spring%20%EC%9E%85%EB%AC%B8)
 * [테스트 케이스 작성](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%ED%85%8C%EC%8A%A4%ED%8A%B8%20%EC%BC%80%EC%9D%B4%EC%8A%A4%20%EC%9E%91%EC%84%B1.md)
 * [스프링 빈과 의존관계](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%EC%8A%A4%ED%94%84%EB%A7%81%20%EB%B9%88%EA%B3%BC%20%EC%9D%98%EC%A1%B4%EA%B4%80%EA%B3%84.md)
 * [스프링 DB 접근 기술](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/%EC%8A%A4%ED%94%84%EB%A7%81%20DB%20%EC%A0%91%EA%B7%BC%20%EA%B8%B0%EC%88%A0.md)
 * [AOP 맛보기](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%EC%9E%85%EB%AC%B8/AOP%20%EB%A7%9B%EB%B3%B4%EA%B8%B0.md)
+
+#### 스프링 핵심원리 - 기본편
+* [객체지향설계와 스프링](https://github.com/vananaHope/TIL/blob/main/Spring/Spring%20%ED%95%B5%EC%8B%AC%EC%9B%90%EB%A6%AC%20-%20%EA%B8%B0%EB%B3%B8%ED%8E%B8/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5%EC%84%A4%EA%B3%84%EC%99%80%20%EC%8A%A4%ED%94%84%EB%A7%81.md)
 
 ### 자바로 배우는 쉬운 자료구조
 자바로 배우는 쉬운 자료구조 책을 정리한 내용입니다.
